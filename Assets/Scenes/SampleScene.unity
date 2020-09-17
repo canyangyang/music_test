@@ -345,7 +345,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9668fe92d53b2fc46a50029a4b6fb7ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parentLine: {fileID: 0}
+  parentLine: {fileID: 1105388954}
   readyForFinalize: 0
 --- !u!1 &519420028
 GameObject:
