@@ -24,7 +24,7 @@ public class Line : MonoBehaviour
         dot_x.transform.position = new Vector2(point.x, point.y);
         dot_x.SetActive(false);
         dot_x.GetComponent<NoteController>().parentLine = this;
-        var notes = NoteLoader.sort(new NoteLoader((end_point.transform.position - start_point.transform.position).magnitude, speed, audio.clip.frequency, 0.5f).readAll(fs.read(@"\1.txt")));//设置1.txt的绝对位置
+        var notes = NoteLoader.sort(new NoteLoader((end_point.transform.position - start_point.transform.position).magnitude, speed, audio.clip.frequency, 0.5f).readAll(fs.read(@"Assets/1.txt")));//设置1.txt的绝对位置
         waitForShowNotes = new Queue<Note>(notes);
         nowOnScreenNotesCtrl = new Queue<NoteController>();
         audio.PlayDelayed(10);
