@@ -12,6 +12,7 @@ public class NoteController:UnityEngine.MonoBehaviour{
     float startSample;
     float endSample;
     float speed;
+    UnityEngine.Vector2 unit;
     void Start()
     {
         speed = parentLine.speed;
@@ -20,12 +21,13 @@ public class NoteController:UnityEngine.MonoBehaviour{
         startSample = note.showSample;
         endSample = note.establishSample;
         audio = parentLine.audio;
+        unit = (endPointPos - startPointPos).normalized;
     }
     void Update()
     {
         if(audio.timeSamples>startSample && audio.timeSamples < endSample)
         {
-        gameObject.transform.position = (endPointPos - startPointPos).normalized * (audio.timeSamples-startSample)/ audio.clip.frequency * speed;
+        gameObject.transform.position =(unit * (audio.timeSamples-startSample)/ audio.clip.frequency * speed)+startPointPos;
         }
         else
         {
