@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using System.Diagnostics.Eventing.Reader;
+using PathCreation;
 
 public class DTPathMove : MonoBehaviour
 {
@@ -18,6 +19,6 @@ public class DTPathMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        VertexPath() 
     }
 }
