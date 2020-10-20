@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Security.Permissions;
 using PathCreation;
 using PathCreation.Utility;
 using UnityEditor;
@@ -241,13 +242,18 @@ namespace PathCreationEditor {
                     }
                 }
             }
-
+            Vector2[] points = new Vector2[creator.path.NumPoints];
+            for (int i = 0; i < creator.path.NumPoints; i++)
+            {
+                points[i] = creator.path.GetPoint(i);
+                GUILayout.TextField("points" + points[i]);
+            }
+            
             data.showVertexPathDisplayOptions = EditorGUILayout.Foldout (data.showVertexPathDisplayOptions, new GUIContent ("Display Options"), true, boldFoldoutStyle);
             if (data.showVertexPathDisplayOptions) {
                 using (var check = new EditorGUI.ChangeCheckScope ()) {
                     data.showNormalsInVertexMode = GUILayout.Toggle (data.showNormalsInVertexMode, new GUIContent ("Show Normals"));
                     data.showBezierPathInVertexMode = GUILayout.Toggle (data.showBezierPathInVertexMode, new GUIContent ("Show Bezier Path"));
-
                     if (check.changed) {
                         SceneView.RepaintAll ();
                         EditorApplication.QueuePlayerLoopUpdate ();
