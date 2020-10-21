@@ -5,7 +5,6 @@ using PathCreation;
 using Newtonsoft.Json;
 public class BpathMgr : MonoBehaviour
 {
-    public string dicname;
     PathCreator creator;
     [System.Serializable]
     //用结构体代替字典序列化
@@ -15,32 +14,34 @@ public class BpathMgr : MonoBehaviour
         public GameObject path;
     }
     public bpath[] bpaths;
+    public struct bpathdata
+    {
+        public int number;
+        public Vector3[] points;
+    }
+    public bpathdata[] bpathdatas;
     // Start is called before the first frame update
     void Start()
     {
-        
-        Bpath newbpath = new Bpath();
-        newbpath.name = dicname;
-        newbpath.dic = new Dictionary<int, Vector3[]>();
-        //将结构体的数据复制给字典
+        bpathdatas = new bpathdata[bpaths.Length];
+        //将结构体的数据复制给数据结构体
         for(int i = 0; i < bpaths.Length; i++)
         {
-            if (!newbpath.dic.ContainsKey(bpaths[i].number))
-            {
                 creator = bpaths[i].path.GetComponent<PathCreator>();
+                bpathdatas[i].number = bpaths[i].number;
                 Debug.Log(creator.path.NumPoints);
-                Vector3[] points = creator.path.localPoints;
-                newbpath.dic.Add(bpaths[i].number, points);
+               for(int j = 0; j < creator.path.NumPoints; j++)
+            {
+                Debug.Log(creator.path.GetPoint(j));
+                bpathdatas[i].points[j] = creator.path.GetPoint(j);
             }
-        }
-        string json = JsonConvert.SerializeObject(newbpath);
+            }
+        string json =JsonUtility.ToJson(bpathdatas, true);
         Debug.Log(json);
+        }
+        
 
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        
-    }
-}
+
