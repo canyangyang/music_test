@@ -8,6 +8,7 @@ public class BpathMgr : MonoBehaviour
     public string dicname;
     PathCreator creator;
     [System.Serializable]
+    //用结构体代替字典序列化
     public struct bpath
     {
         public int number;
@@ -21,6 +22,7 @@ public class BpathMgr : MonoBehaviour
         Bpath newbpath = new Bpath();
         newbpath.name = dicname;
         newbpath.dic = new Dictionary<int, Vector3[]>();
+        //将结构体的数据复制给字典
         for(int i = 0; i < bpaths.Length; i++)
         {
             if (!newbpath.dic.ContainsKey(bpaths[i].number))
