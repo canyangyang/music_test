@@ -21,7 +21,6 @@ public class BpathMgr : MonoBehaviour
     void Start()
     {
         
-        //将结构体的数据复制给数据结构体
         for(int i = 0; i < bpaths.Length; i++)
         {
                 creator = bpaths[i].path.GetComponent<PathCreator>();
